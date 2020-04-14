@@ -24,6 +24,15 @@ config/name="Test"
 run/main_scene="res://src/Level.tscn"
 config/icon="res://src/assets/icon.png"
 
+[autoload]
+
+UserData="*res://addons/github-integration/scripts/user_data.gd"
+IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "github-integration" )
+
 [input]
 
 move_left={
