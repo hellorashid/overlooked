@@ -6,6 +6,8 @@ func _physics_process(delta):
 	
 	var direction: = getDirection()
 	velocity = calculateMoveVelocity(velocity, direction, speed, is_jump_interrupted)
+	#if Input.is_action_pressed("freeze"): 
+	#	velocity = Vector2(0.0, 0.0)
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 
@@ -20,12 +22,15 @@ func calculateMoveVelocity(
 	) -> Vector2: 
 	var newVelocity = linearVelocity
 	
+	if Input.is_action_just_pressed("freeze"): 
+		speed = speed * 13
 	newVelocity.x = speed.x * direction.x
 	
 	newVelocity.y += gravity * get_physics_process_delta_time()
+		
 	if direction.y == -1: 
 		newVelocity.y = speed.y * direction.y
-	if is_jump_interrupted: 
-		newVelocity.y = 0.0
+	#if is_jump_interrupted: 
+	#	newVelocity.y = 0.0
 	return newVelocity
 	
